@@ -13,9 +13,9 @@ describe("Gilded Rose Pin Down Tests", () => {
     test("Normal items should degrade in SellIn value by 1 each day", () => {
       let normalItem = new Item("normal", 10, 20); //build
       const gildedRose = new Shop([normalItem]);
-  
+
       const items = gildedRose.updateQuality(); //operate
-  
+
       expect(items[0].sellIn).toBe(9); //check
     });
 
@@ -35,18 +35,16 @@ describe("Gilded Rose Pin Down Tests", () => {
     test("The Quality of an item is never negative", () => {
       let normalItem = new Item("normal", 10, 0); //build
       const gildedRose = new Shop([normalItem]);
-  
+
       const items = gildedRose.updateQuality(); //operate
-  
+
       expect(items[0].quality).toBe(0); //check
     });
 
     test("The Quality of an item is never more than 50", () => {
       let normalItem = new Item("normal", 6, 52); //build
       const gildedRose = new Shop([normalItem]);
-  
       const items = gildedRose.updateQuality(); //operate
-  
       expect(items[0].quality).toBe(50); //check
     });
 
@@ -82,18 +80,8 @@ describe("Gilded Rose Pin Down Tests", () => {
     expect(items[0].quality).toBe(23);
   });
 
-  test('Quality of "Backstage passes" should increase by 3 when there are 5 days or less', () => {
-    let backstagePass = new Item(
-      "Backstage passes to a TAFKAL80ETC concert",
-      1,
-      20
-    );
-    const gildedRose = new Shop([backstagePass]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].quality).toBe(23);
-  });
 
-  test('Quality of "Backstage passes" should increase by 3 when there are 5 days or less', () => {
+  test('Quality of "Backstage passes" should increase by 2 when there are 10 days or less', () => {
     let backstagePass = new Item(
       "Backstage passes to a TAFKAL80ETC concert",
       10,
